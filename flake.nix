@@ -1,5 +1,5 @@
 {
-  description = "Raylib development environment";
+  description = "An environment for the shwompEngine";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -33,8 +33,8 @@
     packages.${system}.default = let 
       pkgs = import nixpkgs { inherit system ;};
     in pkgs.stdenv.mkDerivation {
-      name = "engine";
-      description = "a game in a custom engine";
+      name = "engine";                              # CHANGE THIS TO YOUR EXCECUTABLE NAME
+      description = "A minimalistic game engine";
       src = ./.; 
       nativeBuildInputs = with pkgs; [
         gcc
