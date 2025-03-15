@@ -37,7 +37,9 @@ It's suggested you take a gander at everything in src/ and if you want what's in
 * init(Entity* root)
 * preRendering(Entity* root)
 * postRendering(Entity* root)
+
 Here is when they are called
+
 * init is called right after the window is initialised.
 * preRendering is called right before we begin rendering all of the entities
 * postRendering is called right before we stop drawing, draw post processing and others here
@@ -49,7 +51,9 @@ The Entity superclass has four virtual functions, these are
 * render()
 * init()
 * death()
-When they are called:
+
+When they are called is as follows.
+
 * process is called on each child of root, it goes parent -> children, so a parent and it's children will always be processed before that parent's sibling
 * render is called on each child of root, however it goes from the bottom up, it will render the children of a parent before the parent.
 * init is called when children are added with the addChild(Entity* child) method, after the `Entity* parent` is set.
@@ -58,7 +62,6 @@ When they are called:
 parent
 | child
 || child2 the second one
-
 ```
 death on parent will be called before any of the children are murdered, then child's death will be called then child2 the second one's death will be called. After the method is called child2 the second one will be destructed, following will be child and parent.
 
