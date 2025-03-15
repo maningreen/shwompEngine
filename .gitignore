@@ -1,0 +1,4 @@
+# ignore engine output
+build/
+result/
+result/*
