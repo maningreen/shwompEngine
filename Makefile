@@ -17,7 +17,7 @@ RAYLIBFLAGS = -I $(RAYLIB) -L$(RAYLIB) -lraylib -lGL -lm -lpthread -ldl -lrt -lX
 LDFLAGS =
 
 # target
-OUT = engine
+OUT = engine 		# CHANGE THIS TO BE YOUR EXCECUTABLE NAME
 BUILDDIR = build/
 
 game: $(ENGINEOUT) $(OBJECTS)
