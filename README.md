@@ -6,7 +6,7 @@ The shwompEngine is a minimal game engine built off of raylib designed to let yo
 
 # Getting started
 
-Clone the repository with either `git clone https://github.com/maningreen/shwompEngine` or get started with nix flakes TODO: figure out this remotely...
+Clone the repository with `git clone https://github.com/maningreen/shwompEngine`
 
 The file structure is as follows
 ```
