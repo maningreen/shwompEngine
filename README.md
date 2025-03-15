@@ -2,7 +2,7 @@
 
 The shwompEngine is a minimal game engine built off of raylib designed to let you program without worry*.
 
-\* unless you're the problem.
+\*unless you're the problem.
 
 # Getting started
 
@@ -33,7 +33,11 @@ The file structure is as follows
     └── init.cpp
 ```
 
-It's suggested you take a gander at everything in src/ and if you want what's in src/engine/. init.cpp (you don't have to name it that if you wish) must contain three functions. 
+It's suggested you take a gander at everything in src/ and if you want what's in src/engine/.<br>
+
+## Initialisation
+
+init.cpp (you don't have to name it that if you wish) must contain three functions. 
 * init(Entity* root)
 * preRendering(Entity* root)
 * postRendering(Entity* root)
@@ -42,7 +46,7 @@ Here is when they are called
 
 * init is called right after the window is initialised.
 * preRendering is called right before we begin rendering all of the entities
-* postRendering is called right before we stop drawing, draw post processing and others here
+* postRendering is called right before we stop drawing, draw post processing and things like that here
 
 ## Entity
 
@@ -57,7 +61,7 @@ When they are called is as follows.
 * process is called on each child of root, it goes parent -> children, so a parent and it's children will always be processed before that parent's sibling
 * render is called on each child of root, however it goes from the bottom up, it will render the children of a parent before the parent.
 * init is called when children are added with the addChild(Entity* child) method, after the `Entity* parent` is set.
-* death is called before the destructor of a given entity, this one is a little more niche but still usefull. It's called before all the children of a given parent are killed. eg:
+* death is called before the destructor of a given entity, this one is a little more niche but still useful. It's called before all the children of a given parent are killed. eg:
 ```
 parent
 | child
@@ -67,7 +71,7 @@ death on parent will be called before any of the children are murdered, then chi
 
 ## Entity2D
 
-This is a built in class, not much to explain here, it inherits from Entity but has a Position field (public).
+Entity2D is a built in class that inherits from Entity, but with a Vector2 position field.
 
 ## How to actually build your game
 
