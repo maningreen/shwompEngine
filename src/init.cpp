@@ -2,13 +2,13 @@
 #include "engine/core.h"
 #include "example.hpp"
 
-void Init(Entity* root) {
+void init(Entity* root) {
   root->addChild(new Example());
 }
 
-void PreRendering(std::vector<Entity*>* entities) {
+void preRendering(std::vector<Entity*>* entities) {
 }
 
-void PostRendering(std::vector<Entity*>* entities) {
+void postRendering(std::vector<Entity*>* entities) {
   DrawFPS(0, 0);
 }
