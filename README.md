@@ -44,7 +44,7 @@ Here is when they are called
 * preRendering is called right before we begin rendering all of the entities
 * postRendering is called right before we stop drawing, draw post processing and others here
 
-# Entity
+## Entity
 
 The Entity superclass has four virtual functions, these are
 * process(float delta)
@@ -65,9 +65,31 @@ parent
 ```
 death on parent will be called before any of the children are murdered, then child's death will be called then child2 the second one's death will be called. After the method is called child2 the second one will be destructed, following will be child and parent.
 
-# Entity2D
+## Entity2D
 
 This is a built in class, not much to explain here, it inherits from Entity but has a Position field (public).
+
+## How to actually build your game
+
+using make has a few options
+
+| Commands | Effects |
+|----------|---------|
+| make     | builds all the .cpp files in src/ and src/engine |
+| make clean | deletes everything in build/ |
+| make run | everything `make` does and excecutes the output |
+
+### Changing the output
+
+normally the output is build/engine <br>
+if you really don't like that you can change that by
+
+1. going into the makefile, finding the line that says and change the variable
+>  \# CHANGE THIS TO BE YOUR EXCECUTABLE NAME
+
+2. going into the flake.nix, finding the line that says and change the variable
+>  \# CHANGE THIS TO BE YOUR EXCECUTABLE NAME
+
 
 # How to contribute
 

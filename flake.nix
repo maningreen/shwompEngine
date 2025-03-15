@@ -32,16 +32,22 @@
 
     packages.${system}.default = let 
       pkgs = import nixpkgs { inherit system ;};
+
+      excecutable = "engine";      # CHANGE THIS TO YOUR EXCECUTABLE NAME
+
     in pkgs.stdenv.mkDerivation {
-      name = "engine";                              # CHANGE THIS TO YOUR EXCECUTABLE NAME
+      name = excecutable;
       description = "A minimalistic game engine";
       src = ./.; 
       nativeBuildInputs = with pkgs; [
+
         gcc
         gnumake
+
       ];
 
       buildInputs = with pkgs; [
+
         libGL
 
         # X11 dependencies
@@ -51,8 +57,6 @@
         xorg.libXi
         xorg.libXinerama
         xorg.libXrandr
-
-        raylib
       ];
 
       buildPhase = ''
@@ -62,7 +66,7 @@
       
       installPhase = ''
         mkdir -p $out/bin
-        install -t $out/bin build/engine
+        install -t $out/bin build/${excecutable}
       '';
     };
   };
