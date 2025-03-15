@@ -75,7 +75,7 @@ Entity2D is a built in class that inherits from Entity, but with a Vector2 posit
 
 ## How to actually build your game
 
-using make has a few options
+Using make has a few options
 
 | Commands | Effects |
 |----------|---------|
@@ -95,6 +95,30 @@ if you really don't like that you can change that by
 >  \# CHANGE THIS TO BE YOUR EXCECUTABLE NAME
 
 
+## Using Nix
+
+Using nix is sugguested for development due to it's powerful nature.<br>
+to get started developing in nix you'd need nix flakes enabled, you can do this
+
+### Nixos
+To permanently enable flakes on nixos
+`nix.settings.experimental-features = [ "nix-command" "flakes" ];`
+
+### Other distros
+Add the following to your nix.conf
+`experimental-featurs = nix-command flakes`
+
+### Starting development
+
+`nix develop`
+will pop you into a shell with all of the dependancies installed, if you need more packages add them in the flake.nix<br>
+You can find nix packages [here](https://search.nixos.org/packages)<br>
+And add them in the mkShell section and the buildInputs section
+
 # How to contribute
 
 If for some reason you think this project has any hopes of being useful, you can fork this repo and whence you add whatever you think is needed make a pull request.
+
+#### About Me
+
+I'm someone terminally bored. This is my first project that isn't crap.
