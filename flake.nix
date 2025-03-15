@@ -14,6 +14,8 @@
       };
     in pkgs.mkShell {
       packages = with pkgs; [
+        # add custom packages here
+
         libGL
 
         # X11 dependencies
@@ -40,13 +42,12 @@
       description = "A minimalistic game engine";
       src = ./.; 
       nativeBuildInputs = with pkgs; [
-
         gcc
         gnumake
-
       ];
 
       buildInputs = with pkgs; [
+        # add custom packages here
 
         libGL
 
