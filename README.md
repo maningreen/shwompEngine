@@ -34,6 +34,9 @@ The file structure is as follows
 ```
 
 It's suggested you take a gander at everything in src/ and if you want what's in src/engine/.<br>
+
+## Initialisation
+
 init.cpp (you don't have to name it that if you wish) must contain three functions. 
 * init(Entity* root)
 * preRendering(Entity* root)
@@ -43,7 +46,7 @@ Here is when they are called
 
 * init is called right after the window is initialised.
 * preRendering is called right before we begin rendering all of the entities
-* postRendering is called right before we stop drawing, draw post processing and others here
+* postRendering is called right before we stop drawing, draw post processing and things like that here
 
 ## Entity
 
