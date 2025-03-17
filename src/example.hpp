@@ -10,8 +10,6 @@ public:
 
   Example();
   ~Example();
-
 };
-
 
 #endif
