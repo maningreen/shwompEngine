@@ -4,18 +4,17 @@
 
 void manageProcess(Entity* en, float delta) {
   en->process(delta);
-  for(int i = 0; i < en->children.size(); i++) {
+  for(int i = 0; i < en->children.size(); i++)
     manageProcess(en->children[i], delta);
-    if(en->children[i]->getValid() == false)
-      en->children.erase(en->children.begin() + i);
-  }
+  if(!en->getValid())
+    en->kill();
 }
 
-void manageChildrenRendering(std::vector<Entity*>* children) {
-  for(Entity* child : *children) {
-    manageChildrenRendering(&child->children);
-    child->render();
-  }
+void manageRendering(Entity* en) {
+  en->render();
+  for(int i = 0; i < en->children.size(); i++)
+    manageRendering(en->children[i]);
+  en->postRender();
 }
 
 void init(Entity* root);
@@ -29,25 +28,17 @@ int main() {
 
   Entity::setRoot(root);
 
-  SetTargetFPS(60);
-
   init(root);
 
   float delta = 1.0f / 60.0f;
-  while(!WindowShouldClose()) {
+  while(root->getValid()) {
 
     manageProcess(root, delta);
 
-    BeginDrawing();
-
     preRendering(root);
 
-    manageChildrenRendering(&root->children);
+    manageRendering(root);
 
     postRendering(root);
-
-    EndDrawing();
   }
-
-  root->kill();
 }

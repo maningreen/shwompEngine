@@ -23,14 +23,11 @@ Entity2D::Entity2D(const std::string& name, Entity* par, Vector2 position) : Ent
 Entity2D::Entity2D(const std::string& name, Vector2 position) : Entity(name), position(position) {
 }
 
-Entity::~Entity() {
-}
+Entity::~Entity() {}
 
-Entity::Entity(const std::string& name, Entity* parent) : parent(parent), name(name), valid(true) {
-}
+Entity::Entity(const std::string& name, Entity* parent) : parent(parent), name(name), valid(true) {}
 
-Entity::Entity(const std::string& name) : parent(nullptr), name(name), valid(true) {
-}
+Entity::Entity(const std::string& name) : parent(nullptr), name(name), valid(true) {}
 
 void Entity::addChild(Entity* child) {
   child->parent = this;
