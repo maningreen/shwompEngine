@@ -10,27 +10,31 @@ Clone the repository with `git clone https://github.com/maningreen/shwompEngine`
 
 The file structure is as follows
 ```
-├── external
-│   └── raylib-5.5
-│       ├── libraylib.a
-│       ├── raylib.h
-│       └── raymath.h
-├── flake.lock
-├── flake.nix
-├── LICENSE
-├── Makefile
-├── README.md
-└── src
-    ├── engine
-    │   ├── core.cpp
-    │   ├── core.h
-    │   ├── entity.cpp
-    │   ├── entity.hpp
-    │   └── main.cpp
-    ├── example.cpp
-    ├── example.hpp
-    ├── include.h
-    └── init.cpp
+ .
+├──  build
+├──  external
+│   └──  raylib-5.5
+│       ├──  libraylib.a
+│       ├──  raylib.h
+│       └──  raymath.h
+├──  flake.lock
+├──  flake.nix
+├──  LICENSE
+├──  Makefile
+├── 󰂺 README.md
+└──  src
+    ├──  engine
+    │   ├──  core.cpp
+    │   ├──  core.h
+    │   ├──  entity.cpp
+    │   ├──  entity.hpp
+    │   ├──  main.cpp
+    │   ├──  root.cpp
+    │   └──  root.hpp
+    ├──  example.cpp
+    ├──  example.hpp
+    ├──  include.h
+    └──  init.cpp
 ```
 
 It's suggested you take a gander at everything in src/ and if you want what's in src/engine/.<br>
@@ -47,6 +51,10 @@ Here is when they are called
 * init is called right after the window is initialised.
 * preRendering is called right before we begin rendering all of the entities
 * postRendering is called right before we stop drawing, draw post processing and things like that here
+
+### Deinitialisation
+
+When you call `killDefered()` on root the window will close and your tree will be freed.
 
 ## Entity
 
@@ -106,7 +114,7 @@ To permanently enable flakes on nixos
 
 ### Other distros
 Add the following to your nix.conf
-`experimental-featurs = nix-command flakes`
+`experimental-features = nix-command flakes`
 
 ### Starting development
 
@@ -114,6 +122,22 @@ Add the following to your nix.conf
 will pop you into a shell with all of the dependancies installed, if you need more packages add them in the flake.nix<br>
 You can find nix packages [here](https://search.nixos.org/packages)<br>
 And add them in the mkShell section and the buildInputs section
+
+## Customising
+
+### Root Entity
+
+There is one more type of entity, that being root. Root (by default) manages the window initialisation and the window deinitilisation.
+If you want you can change it from raylib to use another visual library, such as sdl, or if you want even a TUI library such as ncurses.
+
+### Changing visual backend
+
+In order to change the visual backend to something you prefer here is what you would do.
+
+1. Install the library.
+2. Update values, this means going into `entity.hpp` and adjusting the fields such as `position` to another type.
+3. Edit `root.hpp` to account for your backend
+4. (Optional, but suggested) edit flake.nix to account for your packages.
 
 # How to contribute
 
