@@ -7,68 +7,49 @@
 
   outputs = { self , nixpkgs ,... }: let
     system = "x86_64-linux";
+    pkgs = import nixpkgs { inherit system; };
+    # *this is for raylib*
+    raylibPackages = with pkgs; [
+      libGL
+
+      # X11 dependencies
+      xorg.libX11
+      xorg.libX11.dev
+      xorg.libXcursor
+      xorg.libXi
+      xorg.libXinerama
+      xorg.libXrandr
+    ];
   in {
-    devShells."${system}".default = let
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in pkgs.mkShell {
+    devShells."${system}".default = pkgs.mkShell {
       packages = with pkgs; [
-        # add custom packages here
-
-        libGL
-
-        # X11 dependencies
-        xorg.libX11
-        xorg.libX11.dev
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXrandr
-
         # make
         gnumake
         gcc # gcc
-      ];
+      ] ++ raylibPackages;
     };
 
     packages.${system}.default = let 
-      pkgs = import nixpkgs { inherit system ;};
-
       excecutable = "engine";      # CHANGE THIS TO YOUR EXCECUTABLE NAME
-
     in pkgs.stdenv.mkDerivation {
-      name = excecutable;
-      description = "A minimalistic game engine";
-      src = ./.; 
-      nativeBuildInputs = with pkgs; [
-        gcc
-        gnumake
-      ];
+        name = excecutable;
+        description = "A minimalistic game engine";
+        src = ./.; 
 
-      buildInputs = with pkgs; [
-        # add custom packages here
+        buildInputs = with pkgs; [
+          gcc
+          gnumake
+        ] ++ raylibPackages;
 
-        libGL
-
-        # X11 dependencies
-        xorg.libX11
-        xorg.libX11.dev
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXrandr
-      ];
-
-      buildPhase = ''
+        buildPhase = ''
         mkdir -p build
         make -j3
-      '';
-      
-      installPhase = ''
+        '';
+
+        installPhase = ''
         mkdir -p $out/bin
         install -t $out/bin build/${excecutable}
-      '';
-    };
+        '';
+      };
   };
 }
