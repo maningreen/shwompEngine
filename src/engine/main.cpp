@@ -2,16 +2,12 @@
 #include "root.hpp"
 #include <vector>
 
-void manageChildrenProcess(std::vector<Entity*>* children, float delta) {
-  for(int i = 0; i < children->size(); i++) {
-    (*children)[i]->process(delta);
-    manageChildrenProcess(&(*children)[i]->children, delta);
-    if(!(*children)[i]->getValid()) {
-      (*children)[i]->kill();
-      children->erase(children->begin() + i);
-      i--;
-      continue;
-    }
+void manageProcess(Entity* en, float delta) {
+  en->process(delta);
+  for(int i = 0; i < en->children.size(); i++) {
+    manageProcess(en->children[i], delta);
+    if(en->children[i]->getValid() == false)
+      en->children.erase(en->children.begin() + i);
   }
 }
 
@@ -40,7 +36,7 @@ int main() {
   float delta = 1.0f / 60.0f;
   while(!WindowShouldClose()) {
 
-    manageChildrenProcess(&root->children, delta);
+    manageProcess(root, delta);
 
     BeginDrawing();
 

@@ -4,12 +4,15 @@
 #include "entity.hpp"
 
 class Root : public Entity {
-  public:
-    Root();
-    ~Root();
+public:
+  Root();
+  ~Root();
 
-    static const Vector2 windowDimensions;
-    static const std::string windowName;
+  // void render() override;
+  // void postRender() override;
+
+  static const Vector2 windowDimensions;
+  static const std::string windowName;
 };
 
 #endif
