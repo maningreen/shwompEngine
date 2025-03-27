@@ -2,7 +2,7 @@
 
 The shwompEngine is a minimal game engine built off of raylib designed to let you program without worry*.
 
-\*unless you're the problem.
+-# \*unless you're the problem.
 
 # Getting started
 
@@ -41,16 +41,9 @@ It's suggested you take a gander at everything in src/ and if you want what's in
 
 ## Initialisation
 
-init.cpp (you don't have to name it that if you wish) must contain three functions. 
-* init(Entity* root)
-* preRendering(Entity* root)
-* postRendering(Entity* root)
-
-Here is when they are called
-
-* init is called right after the window is initialised.
-* preRendering is called right before we begin rendering all of the entities
-* postRendering is called right before we stop drawing, draw post processing and things like that here
+init.cpp (you don't have to name it that if you wish) must contain one function. 
+`init(Entity* root)`
+init is called right after the window is initialised.
 
 ### Deinitialisation
 
@@ -61,6 +54,7 @@ When you call `killDefered()` on root the window will close and your tree will b
 The Entity superclass has four virtual functions, these are
 * process(float delta)
 * render()
+* postRender()
 * init()
 * death()
 
@@ -68,12 +62,13 @@ When they are called is as follows.
 
 * process is called on each child of root, it goes parent -> children, so a parent and it's children will always be processed before that parent's sibling
 * render is called on each child of root, however it goes from the bottom up, it will render the children of a parent before the parent.
+* postRender is called right after all of the children of the node are rendered, similar to `death()` it's niche but it has it's use cases. 
 * init is called when children are added with the addChild(Entity* child) method, after the `Entity* parent` is set.
 * death is called before the destructor of a given entity, this one is a little more niche but still useful. It's called before all the children of a given parent are killed. eg:
 ```
 parent
-| child
-|| child2 the second one
+|-child
+ |-child2 the second one
 ```
 death on parent will be called before any of the children are murdered, then child's death will be called then child2 the second one's death will be called. After the method is called child2 the second one will be destructed, following will be child and parent.
 
@@ -109,10 +104,12 @@ Using nix is sugguested for development due to it's powerful nature.<br>
 to get started developing in nix you'd need nix flakes enabled, you can do this
 
 ### Nixos
+
 To permanently enable flakes on nixos
 `nix.settings.experimental-features = [ "nix-command" "flakes" ];`
 
 ### Other distros
+
 Add the following to your nix.conf
 `experimental-features = nix-command flakes`
 
