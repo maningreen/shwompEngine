@@ -2,7 +2,7 @@
 
 The shwompEngine is a minimal game engine built off of raylib designed to let you program without worry*.
 
--# \*unless you're the problem.
+\*unless you're the problem.
 
 # Getting started
 
