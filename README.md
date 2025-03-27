@@ -10,31 +10,31 @@ Clone the repository with `git clone https://github.com/maningreen/shwompEngine`
 
 The file structure is as follows
 ```
- .
-├──  build
-├──  external
-│   └──  raylib-5.5
-│       ├──  libraylib.a
-│       ├──  raylib.h
-│       └──  raymath.h
-├──  flake.lock
-├──  flake.nix
-├──  LICENSE
-├──  Makefile
-├── 󰂺 README.md
-└──  src
-    ├──  engine
-    │   ├──  core.cpp
-    │   ├──  core.h
-    │   ├──  entity.cpp
-    │   ├──  entity.hpp
-    │   ├──  main.cpp
-    │   ├──  root.cpp
-    │   └──  root.hpp
-    ├──  example.cpp
-    ├──  example.hpp
-    ├──  include.h
-    └──  init.cpp
+.
+├── build
+├── external
+│   └── raylib-5.5
+│       ├── libraylib.a
+│       ├── raylib.h
+│       └── raymath.h
+├── flake.lock
+├── flake.nix
+├── LICENSE
+├── Makefile
+├── README.md
+└── src
+    ├── engine
+    │   ├── core.cpp
+    │   ├── core.h
+    │   ├── entity.cpp
+    │   ├── entity.hpp
+    │   ├── main.cpp
+    │   ├── root.cpp
+    │   └── root.hpp
+    ├── example.cpp
+    ├── example.hpp
+    ├── include.h
+    └── init.cpp
 ```
 
 It's suggested you take a gander at everything in src/ and if you want what's in src/engine/.<br>
