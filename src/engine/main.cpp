@@ -1,11 +1,6 @@
 #include "entity.hpp"
-#include "core.h"
-#include "../include.h"
+#include "root.hpp"
 #include <vector>
-#include <iostream>
-
-#define baseScreenScalar 1000
-#define initialScreenDimensions (Vector2){baseScreenScalar * 16/9, baseScreenScalar / (16 / 9)}
 
 void manageChildrenProcess(std::vector<Entity*>* children, float delta) {
   for(int i = 0; i < children->size(); i++) {
@@ -34,33 +29,29 @@ void preRendering(Entity* root);
 void postRendering(Entity* root);
 
 int main() {
-  Entity* Root = new Entity("Root", 0);
+  Root* root = new Root();
 
-  Entity::setRoot(Root);
+  Entity::setRoot(root);
 
   SetTargetFPS(60);
 
-  InitWindow(initialScreenDimensions.x, initialScreenDimensions.y, "Game :)");
-
-  init(Root);
+  init(root);
 
   float delta = 1.0f / 60.0f;
   while(!WindowShouldClose()) {
 
-    manageChildrenProcess(&Root->children, delta);
+    manageChildrenProcess(&root->children, delta);
 
     BeginDrawing();
 
-    preRendering(Root);
+    preRendering(root);
 
-    manageChildrenRendering(&Root->children);
+    manageChildrenRendering(&root->children);
 
-    postRendering(Root);
+    postRendering(root);
 
     EndDrawing();
   }
 
-  Root->kill();
-
-  CloseWindow();
+  root->kill();
 }
