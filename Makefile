@@ -23,17 +23,18 @@ BUILDDIR = build/
 game: $(ENGINEOUT) $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(BUILDDIR)$(OUT) $(LDFLAGS) $(RAYLIBFLAGS) $(ENGINEFLAGS)
 
-engine: $(ENGINEOUT)
-
 $(ENGINEOUT): $(ENGINEOBJS) # -c makes it not link
 	ar rcs $(ENGINEOUT) $(ENGINEOBJS)
 
-build/%.o: src/%.cpp
+$(BUILDDIR)%.o: src/%.cpp
 	$(CC) -c $< -o $@
 
 
 $(BUILDDIR)%.o: src/engine/%.cpp
 	$(CC) -c $< -o $@
+
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
 
 clean:
 	rm -r $(BUILDDIR)*
