@@ -2,24 +2,19 @@
 #include "root.hpp"
 #include <vector>
 
-void manageChildrenProcess(std::vector<Entity*>* children, float delta) {
-  for(int i = 0; i < children->size(); i++) {
-    (*children)[i]->process(delta);
-    manageChildrenProcess(&(*children)[i]->children, delta);
-    if(!(*children)[i]->getValid()) {
-      (*children)[i]->kill();
-      children->erase(children->begin() + i);
-      i--;
-      continue;
-    }
-  }
+void manageProcess(Entity* en, float delta) {
+  en->process(delta);
+  for(int i = 0; i < en->children.size(); i++)
+    manageProcess(en->children[i], delta);
+  if(!en->getValid())
+    en->kill();
 }
 
-void manageChildrenRendering(std::vector<Entity*>* children) {
-  for(Entity* child : *children) {
-    manageChildrenRendering(&child->children);
-    child->render();
-  }
+void manageRendering(Entity* en) {
+  en->render();
+  for(int i = 0; i < en->children.size(); i++)
+    manageRendering(en->children[i]);
+  en->postRender();
 }
 
 void init(Entity* root);
@@ -33,25 +28,17 @@ int main() {
 
   Entity::setRoot(root);
 
-  SetTargetFPS(60);
-
   init(root);
 
   float delta = 1.0f / 60.0f;
-  while(!WindowShouldClose()) {
+  while(root->getValid()) {
 
-    manageChildrenProcess(&root->children, delta);
-
-    BeginDrawing();
+    manageProcess(root, delta);
 
     preRendering(root);
 
-    manageChildrenRendering(&root->children);
+    manageRendering(root);
 
     postRendering(root);
-
-    EndDrawing();
   }
-
-  root->kill();
 }

@@ -43,6 +43,7 @@ public:
 
   virtual void process(float delta) {};
   virtual void render() {};
+  virtual void postRender() {};
   virtual void init() {};
   virtual void death() {};
 };
