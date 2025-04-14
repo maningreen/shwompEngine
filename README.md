@@ -88,7 +88,7 @@ Using make has a few options
 
 ### Changing the output
 
-normally the output is build/engine <br>
+normally the output is build/out <br>
 if you really don't like that you can change that by
 
 1. going into the makefile, finding the line that says and change the variable
