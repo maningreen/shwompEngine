@@ -7,27 +7,9 @@
 
   outputs = { self , nixpkgs ,... }: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
-    # *this is for raylib*
-    raylibPackages = with pkgs; [
-      libGL
-
-      # X11 dependencies
-      xorg.libX11
-      xorg.libX11.dev
-      xorg.libXcursor
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXrandr
-    ];
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
-    devShells."${system}".default = pkgs.mkShell {
-      packages = with pkgs; [
-        # make
-        gnumake
-        gcc # gcc
-      ] ++ raylibPackages;
-    };
+    devShells."${system}".default = pkgs.callPackage ./shell.nix { inherit pkgs; };
 
     packages.${system}.default = let 
       excecutable = "engine";      # CHANGE THIS TO YOUR EXCECUTABLE NAME
