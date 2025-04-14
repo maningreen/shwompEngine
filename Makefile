@@ -17,11 +17,11 @@ RAYLIBFLAGS = -I $(RAYLIB) -L$(RAYLIB) -lraylib -lGL -lm -lpthread -ldl -lrt -lX
 LDFLAGS =
 
 # target
-OUT = engine 		# CHANGE THIS TO BE YOUR EXCECUTABLE NAME
+OUT = build/out 		# CHANGE THIS TO BE YOUR EXCECUTABLE NAME
 BUILDDIR = build/
 
 game: $(ENGINEOUT) $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(BUILDDIR)$(OUT) $(LDFLAGS) $(RAYLIBFLAGS) $(ENGINEFLAGS)
+	$(CC) $(OBJECTS) -o $(OUT) $(LDFLAGS) $(RAYLIBFLAGS) $(ENGINEFLAGS)
 
 $(ENGINEOUT): $(ENGINEOBJS) # -c makes it not link
 	ar rcs $(ENGINEOUT) $(ENGINEOBJS)
