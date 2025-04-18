@@ -41,9 +41,14 @@ It's suggested you take a gander at everything in src/ and what's in src/engine/
 
 ## Initialisation
 
-init.cpp (you don't have to name it that if you wish) must contain one function. 
-`init(Entity* root)`
-init is called right after the root entity is initialised.
+init.cpp (you don't have to name it that if you wish) must contain three function. 
+1. init(Entity* root)`
+2. preRendering(Entity* root)
+3. postRendering(Entity* root)
+
+init is called right after the root entity is initialised, and the window is opened.
+preRendering is called before render gets called on root, use for things like preprocessing
+postRendering is called right after render gets called on root, and after all children are rendered, use for things like drawing fps and postprocessing.
 
 ### Deinitialisation
 
@@ -126,8 +131,14 @@ And add them in the mkShell section in `shell.nix` and the buildInputs section i
 
 ### Root Entity
 
-There is one more type of entity, that being root. Root (by default) manages the window initialisation and the window deinitilisation.
-If you want you can change it from raylib to use another visual library, such as sdl, or if you want even a TUI library such as ncurses.
+There is one more type of entity, that being root. Root manages many things, those being
+- window initialization
+- rendering and processing of children
+- closing windows
+- refreshing the window
+In order to *truly* customise the engine you *must* customise the root entity class, it's source can be found in two files:
+1. `src/engine/root.hpp`
+2. `src/engine/root.cpp`
 
 ### Changing visual backend
 
