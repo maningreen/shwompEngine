@@ -17,11 +17,9 @@ Entity* Entity::getRoot() {
   return root;
 }
 
-Entity2D::Entity2D(const std::string& name, Entity* par, Vector2 position) : Entity(name, par), position(position) {
-}
+Entity2D::Entity2D(const std::string& name, Entity* par, Vector2 position) : Entity(name, par), position(position) {}
 
-Entity2D::Entity2D(const std::string& name, Vector2 position) : Entity(name), position(position) {
-}
+Entity2D::Entity2D(const std::string& name, Vector2 position) : Entity(name), position(position) {}
 
 Entity::~Entity() {}
 
