@@ -1,5 +1,4 @@
 # The shwompEngine
-
 The shwompEngine is a minimal game engine built off of raylib designed to let you program without worry*.
 
 \* unless you're the problem.
@@ -12,25 +11,35 @@ The file structure is as follows
 ```
 .
 ├── build
+│   ├── core.o
+│   ├── entity.o
+│   ├── example.o
+│   ├── init.o
+│   ├── libengine.a
+│   ├── main.o
+│   ├── out
+│   └── root.o
+├── default.nix
 ├── external
-│   └── raylib-5.5
-│       ├── libraylib.a
-│       ├── raylib.h
-│       └── raymath.h
+│   └── raylib-5.5
+│       ├── libraylib.a
+│       ├── raylib.h
+│       └── raymath.h
 ├── flake.lock
 ├── flake.nix
 ├── LICENSE
 ├── Makefile
 ├── README.md
+├── shell.nix
 └── src
     ├── engine
-    │   ├── core.cpp
-    │   ├── core.h
-    │   ├── entity.cpp
-    │   ├── entity.hpp
-    │   ├── main.cpp
-    │   ├── root.cpp
-    │   └── root.hpp
+    │   ├── core.cpp
+    │   ├── core.h
+    │   ├── entity.cpp
+    │   ├── entity.hpp
+    │   ├── main.cpp
+    │   ├── root.cpp
+    │   └── root.hpp
     ├── example.cpp
     ├── example.hpp
     ├── include.h
