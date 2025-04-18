@@ -4,9 +4,14 @@
 #include "entity.hpp"
 
 class Root : public Entity {
+private:
+  void manageChildrenRendering(Entity* en);
+
+  void manageChildrenProcesses();
 public:
   Root();
   ~Root();
+
 
   void process(float delta) override;
   void render() override;

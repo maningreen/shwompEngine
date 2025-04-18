@@ -10,13 +10,6 @@ void manageProcess(Entity* en, float delta) {
     en->kill();
 }
 
-void manageRendering(Entity* en) {
-  en->render();
-  for(int i = 0; i < en->children.size(); i++)
-    manageRendering(en->children[i]);
-  en->postRender();
-}
-
 void init(Entity* root);
 
 void preRendering(Entity* root);
@@ -37,8 +30,10 @@ int main() {
 
     preRendering(root);
 
-    manageRendering(root);
+    root->render();
 
     postRendering(root);
+
+    root->postRender();
   }
 }
