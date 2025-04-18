@@ -151,6 +151,10 @@ In order to change the visual backend to something you prefer here is what you w
 
 If for some reason you think this project has any hopes of being useful, you can fork this repo and whence you add whatever you think is needed make a pull request.
 
+# NOTES
+
+- `external/raylib-5.5/libraylib.a` is compiled for x86_64-linux.
+
 #### About Me
 
 I'm someone terminally bored. This is my first project that isn't crap.
