@@ -17,6 +17,8 @@ Root::~Root() {
 void Root::process(float delta) {
   if(WindowShouldClose())
     killDefered();
+  for(Entity* en : children)
+    manageChildrenProcesses(en, GetFrameTime());
 }
 
 void Root::render() {
@@ -34,4 +36,12 @@ void Root::manageChildrenRendering(Entity* en) {
   for(int i = 0; i < en->children.size(); i++)
     manageChildrenRendering(en->children[i]);
   en->postRender();
+}
+
+void Root::manageChildrenProcesses(Entity* en, float delta) {
+  en->process(delta);
+  for(int i = 0; i < en->children.size(); i++)
+    manageChildrenProcesses(en->children[i], delta);
+  if(!en->getValid())
+    en->kill();
 }

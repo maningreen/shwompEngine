@@ -1,14 +1,5 @@
 #include "entity.hpp"
 #include "root.hpp"
-#include <vector>
-
-void manageProcess(Entity* en, float delta) {
-  en->process(delta);
-  for(int i = 0; i < en->children.size(); i++)
-    manageProcess(en->children[i], delta);
-  if(!en->getValid())
-    en->kill();
-}
 
 void init(Entity* root);
 
@@ -23,10 +14,9 @@ int main() {
 
   init(root);
 
-  float delta = 1.0f / 60.0f;
   while(root->getValid()) {
 
-    manageProcess(root, delta);
+    root->process(0);
 
     preRendering(root);
 

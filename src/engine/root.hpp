@@ -7,7 +7,7 @@ class Root : public Entity {
 private:
   void manageChildrenRendering(Entity* en);
 
-  void manageChildrenProcesses();
+  void manageChildrenProcesses(Entity* en, float delta);
 public:
   Root();
   ~Root();
