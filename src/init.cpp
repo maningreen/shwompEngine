@@ -1,5 +1,4 @@
 #include "engine/entity.hpp"
-#include "engine/core.h"
 #include "example.hpp"
 
 void init(Entity* root) {

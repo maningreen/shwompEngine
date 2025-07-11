@@ -37,6 +37,9 @@ public:
 
   bool getValid();
 
+  //returns -1 if no such entity is in the vector
+  int getEntityIndex(Entity* entity);
+
   static Entity* getRoot();
   //returns false if failed, true if succeeded
   static bool setRoot(Entity* root);

@@ -17,5 +17,4 @@ in pkgs.mkShell {
       gnumake
       gcc # gcc
     ] ++ raylibPackages;
-
   }

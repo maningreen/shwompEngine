@@ -17,17 +17,23 @@ in pkgs.stdenv.mkDerivation {
     description = "A minimalistic game engine";
     src = ./.; 
 
+    nativeBuildInputs = raylibPackages;
+
     buildInputs = with pkgs; [
       # gnumake and gcc are in the stdenv :)
-    ] ++ raylibPackages;
+    ];
 
     buildPhase = ''
-      mkdir -p build
-      make -j3
-    '';
+      mkdir build
+      make -j$(nproc)
+      '';
 
     installPhase = ''
       mkdir -p $out/bin
       install -t $out/bin build/${name}
-   '';
+    '';
+
+    meta = {
+      license = pkgs.lib.licenses.mit;
+    };
   }

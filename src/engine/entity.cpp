@@ -66,6 +66,13 @@ void Entity::printAllChildren() {
   }
 }
 
+int Entity::getEntityIndex(Entity* entity) {
+  for(int i = 0; i < children.size(); i++)
+    if(children[i] == entity)
+      return i;
+  return -1;
+}
+
 void Entity::kill() {
   death();
   while(!children.empty()) {

@@ -13,24 +13,24 @@ RAYLIB ?= ./external/raylib-5.5/
 
 # flags
 ENGINEFLAGS = $(ENGINEOUT) -L$(BUILDDIR) -lengine
-RAYLIBFLAGS = -I $(RAYLIB) -L$(RAYLIB) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+RAYLIBFLAGS = -I$(RAYLIB) -L$(RAYLIB) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 LDFLAGS =
 
 # target
 OUT = build/out 		# CHANGE THIS TO BE YOUR EXCECUTABLE NAME
 BUILDDIR = build/
 
-game: $(ENGINEOUT) $(OBJECTS)
+game: $(BUILDDIR) $(ENGINEOUT) $(OBJECTS) 
 	$(CC) $(OBJECTS) -o $(OUT) $(LDFLAGS) $(RAYLIBFLAGS) $(ENGINEFLAGS)
 
 $(ENGINEOUT): $(ENGINEOBJS) # -c makes it not link
 	ar rcs $(ENGINEOUT) $(ENGINEOBJS)
 
-$(BUILDDIR)%.o: src/%.cpp
+$(BUILDDIR)%.o: src/%.cpp $(BUILDDIR)
 	$(CC) -c $< -o $@
 
 
-$(BUILDDIR)%.o: src/engine/%.cpp
+$(BUILDDIR)%.o: src/engine/%.cpp $(BUILDDIR)
 	$(CC) -c $< -o $@
 
 $(BUILDDIR):
