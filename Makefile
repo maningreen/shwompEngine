@@ -20,7 +20,7 @@ LDFLAGS =
 OUT = build/out 		# CHANGE THIS TO BE YOUR EXCECUTABLE NAME
 BUILDDIR = build/
 
-game: $(BUILDDIR) $(ENGINEOUT) $(OBJECTS) 
+$(OUT): $(BUILDDIR) $(ENGINEOUT) $(OBJECTS) 
 	$(CC) $(OBJECTS) -o $(OUT) $(LDFLAGS) $(RAYLIBFLAGS) $(ENGINEFLAGS)
 
 $(ENGINEOUT): $(ENGINEOBJS) # -c makes it not link
@@ -29,7 +29,6 @@ $(ENGINEOUT): $(ENGINEOBJS) # -c makes it not link
 $(BUILDDIR)%.o: src/%.cpp $(BUILDDIR)
 	$(CC) -c $< -o $@
 
-
 $(BUILDDIR)%.o: src/engine/%.cpp $(BUILDDIR)
 	$(CC) -c $< -o $@
 
@@ -37,9 +36,9 @@ $(BUILDDIR):
 	mkdir -p $(BUILDDIR)
 
 clean:
-	rm -r $(BUILDDIR)*
+	rm -r $(BUILDDIR)
 
-run: $(ENGINEOUT) $(OBJECTS) game
-	$(BUILDDIR)$(OUT)
+run: $(OUT)
+	$(OUT)
 
-all: clean game
+.PHONY: clean game
